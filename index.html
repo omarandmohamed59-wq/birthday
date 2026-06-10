@@ -54,6 +54,8 @@
       display:none; width:100%; min-height:100vh;
       background: radial-gradient(ellipse at 40% 30%, #fdfbf7 0%, #edf2eb 50%, #e5ded4 100%);
       position:relative; overflow:hidden;
+      /* FIX: إضافة padding-bottom كافي بدل footer-spacer */
+      padding-bottom: 60px;
     }
     .bunting { position:absolute; top:0; left:0; right:0; display:flex; justify-content:space-around; padding:0 5px; z-index:5; }
     .bunting-line { position:absolute; top:24px; left:0; right:0; height:2px; background:rgba(139,58,0,0.15); }
@@ -75,6 +77,16 @@
     .abtn { padding:10px 18px; border-radius:999px; border:none; font-family:'Tajawal',sans-serif; font-size:0.9rem; font-weight:700; cursor:pointer; display:flex; align-items:center; gap:6px; transition:transform 0.2s; box-shadow:0 4px 12px rgba(0,0,0,0.15); }
     .abtn:hover { transform:scale(1.07); }
     .abtn-red { background:#8b3a00; color:#fdf6e3; }
+
+    /* FIX: إصلاح الإيموجي في الزرار */
+    .abtn-red .btn-text { font-family:'Tajawal',sans-serif; }
+    .abtn-red .btn-emoji { 
+      font-family: "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+      font-size: 1rem;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
     
     .side-bal { position:absolute; z-index:2; animation:balSway 3.5s ease-in-out infinite; }
     .side-bal.b1 { top:175px; right:-5px; animation-delay:0.4s; }
@@ -107,7 +119,11 @@
     .sticky-body { color:#3a2000; font-size:1.05rem; line-height:2.1; font-family:'Tajawal',sans-serif; position:relative; z-index:1; }
     .sticky-sig { font-family:'Dancing Script',cursive; color:#6b3a00; font-size:1.3rem; margin-top:18px; text-align:right; position:relative; z-index:1; display:flex; align-items:center; justify-content:flex-end; gap:8px; }
 
-    .footer-spacer { padding-top:630px; background:linear-gradient(180deg,#e5ded4,#dcd5ca); }
+    /* FIX: شيل الـ footer-spacer القديم وخلي layout طبيعي */
+    .phase2-content-spacer {
+      height: 620px; /* مساحة كافية للمحتوى الـ absolute */
+    }
+
     footer { padding:30px; text-align:center; color:rgba(139,58,0,0.6); font-size:0.9rem; border-top:1px solid rgba(139,90,43,0.15); background:#dcd5ca; font-family:'Dancing Script',cursive; letter-spacing:1px; }
     footer span { color:#8b3a00; font-weight: bold; }
 
@@ -137,7 +153,7 @@
       .from-badge{top:245px;left:12px;padding:8px 18px;font-size:0.86rem}
       .action-btns{top:295px;left:12px} .right-col{top:54px;right:15px}
       .photo-ring{width:120px;height:120px} .envelope-container{top:385px}
-      .footer-spacer{padding-top:600px}
+      .phase2-content-spacer { height: 580px; }
     }
     @media(max-width:520px){
       .hb-happy,.hb-bday{font-size:clamp(2.5rem,14vw,4rem)}
@@ -145,7 +161,7 @@
       .from-badge{top:205px;left:10px;font-size:0.8rem;padding:8px 14px}
       .action-btns{top:250px;left:10px} .right-col{top:45px;right:8px}
       .photo-ring{width:105px;height:105px} .envelope-container{top:330px}
-      .footer-spacer{padding-top:540px}
+      .phase2-content-spacer { height: 520px; }
 
       /* ===== MOBILE CARD FIX ===== */
       #cards-wrap { padding: 12px; align-items: flex-start; padding-top: 60px; overflow-y: auto; }
@@ -212,14 +228,12 @@
       <ellipse cx="170" cy="165" rx="100" ry="20" fill="#f0e8ed" stroke="#e0d0d8" stroke-width="0.5"/>
       <rect x="70" y="110" width="14" height="55" fill="rgba(0,0,0,0.07)"/>
       <rect x="256" y="110" width="14" height="55" fill="rgba(0,0,0,0.07)"/>
-      <!-- cream swirls -->
       <ellipse cx="110" cy="100" rx="13" ry="13" fill="url(#cream1)" stroke="#f0c8d8" stroke-width="0.5"/>
       <ellipse cx="110" cy="96" rx="7" ry="7" fill="white" opacity="0.55"/>
       <ellipse cx="170" cy="96" rx="13" ry="13" fill="url(#cream1)" stroke="#f0c8d8" stroke-width="0.5"/>
       <ellipse cx="170" cy="92" rx="7" ry="7" fill="white" opacity="0.55"/>
       <ellipse cx="230" cy="100" rx="13" ry="13" fill="url(#cream1)" stroke="#f0c8d8" stroke-width="0.5"/>
       <ellipse cx="230" cy="96" rx="7" ry="7" fill="white" opacity="0.55"/>
-      <!-- strawberries -->
       <ellipse cx="138" cy="108" rx="9" ry="10" fill="#e53935"/>
       <ellipse cx="138" cy="104" rx="6" ry="5" fill="#ef9a9a" opacity="0.5"/>
       <path d="M135,99 Q138,96 141,99" stroke="#388e3c" stroke-width="2" fill="none" stroke-linecap="round"/>
@@ -287,7 +301,6 @@
       <ellipse cx="170" cy="368" rx="168" ry="22" fill="url(#plateG)" stroke="#d8d8d8" stroke-width="0.8"/>
       <ellipse cx="170" cy="364" rx="155" ry="16" fill="rgba(255,255,255,0.45)"/>
       <ellipse cx="140" cy="362" rx="40" ry="7" fill="rgba(255,255,255,0.35)"/>
-      <!-- plate shadow -->
       <ellipse cx="170" cy="388" rx="162" ry="11" fill="rgba(80,20,0,0.10)"/>
     </svg>
   </div>
@@ -312,7 +325,12 @@
   <div class="from-badge" id="fromBadge">⭐ From: Mohamed ⭐</div>
   
   <div class="action-btns" id="actionBtns">
-    <button class="abtn abtn-red" onclick="triggerPhase3()">Open Letter ✉️💖</button>
+    <!-- FIX: فصل الإيموجي عن النص في span منفصل -->
+    <button class="abtn abtn-red" onclick="triggerPhase3()">
+      <span class="btn-text">Open Letter</span>
+      <span class="btn-emoji">✉️</span>
+      <span class="btn-emoji">💖</span>
+    </button>
   </div>
 
   <div class="side-bal b1">
@@ -410,7 +428,8 @@
     </div>
   </div>
 
-  <div class="footer-spacer"></div>
+  <!-- FIX: spacer بدل footer-spacer القديم -->
+  <div class="phase2-content-spacer"></div>
   <footer>🎂 <span>Happy Birthday Zeina</span> 🎂 &nbsp;|&nbsp; Made with ❤️ by <span>Mohamed Abdelsatar</span></footer>
 </div>
 
@@ -498,7 +517,6 @@ function startPhase2Anims() {
   initFireworks();
 }
 
-// ===== FLOATING HEARTS ON LETTER OPEN =====
 var letterHeartsAnimId = null;
 var letterHeartsTimeout = null;
 
@@ -507,14 +525,11 @@ function startLetterHearts() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   canvas.style.display = "block";
-
   const ctx = canvas.getContext("2d");
   let hearts = [];
   let frameCount = 0;
-
   if (letterHeartsAnimId) cancelAnimationFrame(letterHeartsAnimId);
   if (letterHeartsTimeout) clearTimeout(letterHeartsTimeout);
-
   class FloatHeart {
     constructor() {
       this.x = Math.random() * canvas.width;
@@ -548,15 +563,10 @@ function startLetterHearts() {
     update(frame) {
       this.y -= this.speed;
       this.x += Math.sin(frame * this.swaySpeed + this.swayOffset) * this.swayAmp;
-      if (this.fadeIn) {
-        this.alpha += 0.06;
-        if (this.alpha >= 1) { this.alpha = 1; this.fadeIn = false; }
-      } else {
-        this.alpha -= this.decay;
-      }
+      if (this.fadeIn) { this.alpha += 0.06; if (this.alpha >= 1) { this.alpha = 1; this.fadeIn = false; } }
+      else { this.alpha -= this.decay; }
     }
   }
-
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     frameCount++;
@@ -566,60 +576,37 @@ function startLetterHearts() {
     }
     for (let i = hearts.length - 1; i >= 0; i--) {
       hearts[i].update(frameCount);
-      if (hearts[i].alpha <= 0 && !hearts[i].fadeIn) {
-        hearts.splice(i, 1);
-      } else {
-        hearts[i].draw();
-      }
+      if (hearts[i].alpha <= 0 && !hearts[i].fadeIn) { hearts.splice(i, 1); }
+      else { hearts[i].draw(); }
     }
     letterHeartsAnimId = requestAnimationFrame(animate);
   }
-
   animate();
-
   letterHeartsTimeout = setTimeout(() => {
     cancelAnimationFrame(letterHeartsAnimId);
     letterHeartsAnimId = null;
     let op = 1;
     const fadeOut = setInterval(() => {
-      op -= 0.05;
-      canvas.style.opacity = Math.max(0, op);
-      if (op <= 0) {
-        clearInterval(fadeOut);
-        canvas.style.display = "none";
-        canvas.style.opacity = 1;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-      }
+      op -= 0.05; canvas.style.opacity = Math.max(0, op);
+      if (op <= 0) { clearInterval(fadeOut); canvas.style.display = "none"; canvas.style.opacity = 1; ctx.clearRect(0, 0, canvas.width, canvas.height); }
     }, 30);
   }, 5000);
 }
 
 function stopLetterHearts() {
-  if (letterHeartsAnimId) {
-    cancelAnimationFrame(letterHeartsAnimId);
-    letterHeartsAnimId = null;
-  }
-  if (letterHeartsTimeout) {
-    clearTimeout(letterHeartsTimeout);
-    letterHeartsTimeout = null;
-  }
+  if (letterHeartsAnimId) { cancelAnimationFrame(letterHeartsAnimId); letterHeartsAnimId = null; }
+  if (letterHeartsTimeout) { clearTimeout(letterHeartsTimeout); letterHeartsTimeout = null; }
   const canvas = document.getElementById("floatingHeartsCanvas");
-  canvas.style.display = "none";
-  canvas.style.opacity = 1;
-  const ctx = canvas.getContext("2d");
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  canvas.style.display = "none"; canvas.style.opacity = 1;
+  canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 }
-// ==========================================
 
 function openLetter() {
   const pop = document.getElementById("letterPopup");
   const overlay = document.getElementById("letterOverlay");
   overlay.style.display = "block";
   pop.style.display = "block";
-  setTimeout(() => {
-    overlay.classList.add("active");
-    pop.classList.add("open", "visible");
-  }, 10);
+  setTimeout(() => { overlay.classList.add("active"); pop.classList.add("open", "visible"); }, 10);
   startLetterHearts();
 }
 
@@ -629,10 +616,7 @@ function closeLetter(e) {
   const overlay = document.getElementById("letterOverlay");
   pop.classList.remove("visible");
   overlay.classList.remove("active");
-  setTimeout(() => {
-    pop.style.display = "none";
-    overlay.style.display = "none";
-  }, 400);
+  setTimeout(() => { pop.style.display = "none"; overlay.style.display = "none"; }, 400);
   stopLetterHearts();
 }
 
@@ -650,26 +634,20 @@ function triggerPhase3() {
   const hds = document.getElementById("heartDrawScreen");
   hds.style.display = "flex";
   hds.style.opacity = "1";
-
   drawBigHeart(function() {
     const p3 = document.getElementById("phase3");
     p3.style.display = "flex";
     p3.style.opacity = "0";
     p3.style.transform = "translateY(60px)";
     p3.style.transition = "opacity 0.7s ease, transform 0.7s ease";
-
     setTimeout(() => {
       hds.style.transition = "opacity 0.7s ease";
       hds.style.opacity = "0";
       p3.style.opacity = "1";
       p3.style.transform = "translateY(0)";
-
       setTimeout(() => {
-        hds.style.display = "none";
-        hds.style.opacity = "1";
-        hds.style.transition = "";
-        p3.style.transition = "";
-        p3.style.transform = "";
+        hds.style.display = "none"; hds.style.opacity = "1"; hds.style.transition = "";
+        p3.style.transition = ""; p3.style.transform = "";
         gsap.to("#cards-wrap", { opacity: 1, pointerEvents: "auto", duration: 0.5 });
         gsap.to("#card1", { opacity: 1, y: 0, duration: 0.9, ease: "back.out(1.2)" });
         gsap.to("#backBtn", { opacity: 1, duration: 0.4, delay: 0.7 });
@@ -696,7 +674,6 @@ function drawBigHeart(onComplete) {
   const cx = canvas.width / 2;
   const cy = canvas.height / 2 - 40;
   const size = Math.min(canvas.width, canvas.height) * 0.40;
-
   const totalPoints = 300;
   const points = [];
   for (let i = 0; i <= totalPoints; i++) {
@@ -705,7 +682,6 @@ function drawBigHeart(onComplete) {
     const y = cy - (size / 17) * (13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t));
     points.push({x, y});
   }
-
   let drawn = 0;
   const step = 3;
   let phase = "drawing";
@@ -730,59 +706,46 @@ function drawBigHeart(onComplete) {
   function animateDraw() {
     if (document.getElementById("heartDrawScreen").style.display === "none") return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     if (phase !== "drawing") {
       ctx.save();
       const bgGlow = ctx.createRadialGradient(cx, cy, size*0.1, cx, cy, size*1.4);
       const pulse = phase === "pulsing" ? 0.12 + 0.06 * Math.sin(pulseFrame * 0.08) : 0.12;
       bgGlow.addColorStop(0, `rgba(255,30,80,${pulse})`);
       bgGlow.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = bgGlow;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.restore();
+      ctx.fillStyle = bgGlow; ctx.fillRect(0, 0, canvas.width, canvas.height); ctx.restore();
     }
-
     if (phase !== "drawing") {
       ctx.save();
       const scale = phase === "pulsing" ? 1 + 0.03 * Math.sin(pulseFrame * 0.08) : 1;
       ctx.translate(cx, cy); ctx.scale(scale, scale); ctx.translate(-cx, -cy);
       for (let g = 4; g >= 0; g--) {
-        ctx.save();
-        ctx.shadowColor = "#ff1a5e"; ctx.shadowBlur = 20 + g * 18;
+        ctx.save(); ctx.shadowColor = "#ff1a5e"; ctx.shadowBlur = 20 + g * 18;
         heartPath();
         const fillGrad = ctx.createRadialGradient(cx-size*0.15, cy-size*0.2, size*0.05, cx, cy, size);
-        fillGrad.addColorStop(0, "rgba(255,140,180,0.97)");
-        fillGrad.addColorStop(0.3, "rgba(255,40,100,0.95)");
-        fillGrad.addColorStop(0.65, "rgba(200,10,60,0.92)");
-        fillGrad.addColorStop(1, "rgba(100,0,30,0.85)");
+        fillGrad.addColorStop(0, "rgba(255,140,180,0.97)"); fillGrad.addColorStop(0.3, "rgba(255,40,100,0.95)");
+        fillGrad.addColorStop(0.65, "rgba(200,10,60,0.92)"); fillGrad.addColorStop(1, "rgba(100,0,30,0.85)");
         ctx.fillStyle = fillGrad; ctx.fill(); ctx.restore();
       }
       ctx.save();
-      ctx.beginPath();
-      ctx.arc(cx-size*0.18, cy-size*0.22, size*0.12, 0, Math.PI*2);
+      ctx.beginPath(); ctx.arc(cx-size*0.18, cy-size*0.22, size*0.12, 0, Math.PI*2);
       const hl = ctx.createRadialGradient(cx-size*0.18, cy-size*0.22, 0, cx-size*0.18, cy-size*0.22, size*0.12);
       hl.addColorStop(0, "rgba(255,255,255,0.45)"); hl.addColorStop(1, "rgba(255,255,255,0)");
-      ctx.fillStyle = hl; ctx.fill(); ctx.restore();
-      ctx.restore();
+      ctx.fillStyle = hl; ctx.fill(); ctx.restore(); ctx.restore();
     }
-
     if (phase === "drawing" && drawn > 0) {
       for (let trail = 0; trail < 3; trail++) {
         const trailEnd = Math.max(0, drawn - trail * 8);
         const trailStart = Math.max(0, trailEnd - 25);
-        ctx.save();
-        ctx.globalAlpha = 0.3 - trail * 0.08;
-        ctx.strokeStyle = `hsl(${340 + trail*10}, 100%, ${65 + trail*5}%)`;
-        ctx.lineWidth = 8 - trail * 2; ctx.lineCap = "round"; ctx.lineJoin = "round";
-        ctx.shadowColor = "#ff4488"; ctx.shadowBlur = 15;
+        ctx.save(); ctx.globalAlpha = 0.3 - trail * 0.08;
+        ctx.strokeStyle = `hsl(${340 + trail*10}, 100%, ${65 + trail*5}%)`; ctx.lineWidth = 8 - trail * 2;
+        ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.shadowColor = "#ff4488"; ctx.shadowBlur = 15;
         ctx.beginPath();
         for (let i = trailStart; i <= trailEnd && i < points.length; i++) {
           i === trailStart ? ctx.moveTo(points[i].x, points[i].y) : ctx.lineTo(points[i].x, points[i].y);
         }
         ctx.stroke(); ctx.restore();
       }
-      ctx.save();
-      ctx.shadowColor = "#ff1a5e"; ctx.shadowBlur = 30;
+      ctx.save(); ctx.shadowColor = "#ff1a5e"; ctx.shadowBlur = 30;
       ctx.strokeStyle = "#ff3370"; ctx.lineWidth = 5; ctx.lineCap = "round"; ctx.lineJoin = "round";
       ctx.beginPath();
       for (let i = 0; i <= Math.min(drawn, points.length-1); i++) {
@@ -790,30 +753,24 @@ function drawBigHeart(onComplete) {
       }
       ctx.stroke(); ctx.restore();
     }
-
     if (phase !== "drawing") {
       const sc = phase === "pulsing" ? 1 + 0.03 * Math.sin(pulseFrame * 0.08) : 1;
-      ctx.save();
-      ctx.translate(cx, cy); ctx.scale(sc, sc); ctx.translate(-cx, -cy);
+      ctx.save(); ctx.translate(cx, cy); ctx.scale(sc, sc); ctx.translate(-cx, -cy);
       ctx.shadowColor = "#ff88aa"; ctx.shadowBlur = 15;
       ctx.strokeStyle = "rgba(255,200,220,0.7)"; ctx.lineWidth = 2.5; ctx.lineCap = "round";
       heartPath(); ctx.stroke(); ctx.restore();
     }
-
     if (phase === "drawing" && drawn < points.length) {
       const tip = points[Math.min(drawn, points.length-1)];
       for (let s = 0; s < 5; s++) {
-        const angle = Math.random() * Math.PI * 2;
-        const speed = Math.random() * 5 + 1;
+        const angle = Math.random() * Math.PI * 2; const speed = Math.random() * 5 + 1;
         sparks.push({ x:tip.x, y:tip.y, vx:Math.cos(angle)*speed, vy:Math.sin(angle)*speed, life:1, size:Math.random()*3+1.5, hue:330+Math.random()*50 });
       }
-      ctx.save();
-      ctx.beginPath(); ctx.arc(tip.x, tip.y, 10, 0, Math.PI*2);
+      ctx.save(); ctx.beginPath(); ctx.arc(tip.x, tip.y, 10, 0, Math.PI*2);
       const tipGlow = ctx.createRadialGradient(tip.x, tip.y, 0, tip.x, tip.y, 10);
       tipGlow.addColorStop(0, "rgba(255,200,230,0.9)"); tipGlow.addColorStop(1, "rgba(255,50,100,0)");
       ctx.fillStyle = tipGlow; ctx.fill(); ctx.restore();
     }
-
     for (let i = sparks.length-1; i >= 0; i--) {
       const sp = sparks[i];
       ctx.save(); ctx.globalAlpha = sp.life * sp.life;
@@ -823,7 +780,6 @@ function drawBigHeart(onComplete) {
       sp.x += sp.vx; sp.y += sp.vy; sp.vy += 0.1; sp.life -= 0.04;
       if (sp.life <= 0) sparks.splice(i, 1);
     }
-
     if (phase === "pulsing" && Math.random() < 0.15) {
       const t2 = Math.random() * Math.PI * 2;
       const px = cx + (size/17)*16*Math.pow(Math.sin(t2),3);
@@ -839,12 +795,10 @@ function drawBigHeart(onComplete) {
       fh.x += fh.vx; fh.y += fh.vy; fh.alpha -= 0.018;
       if (fh.alpha <= 0) floatingHearts.splice(i, 1);
     }
-
     if (phase === "pulsing") {
       pulseFrame++;
       if (!doneCalled && pulseFrame > 30) { doneCalled = true; onComplete && onComplete(); }
     }
-
     if (phase === "drawing") {
       drawn += step;
       if (drawn >= totalPoints) {
@@ -856,7 +810,6 @@ function drawBigHeart(onComplete) {
     }
     requestAnimationFrame(animateDraw);
   }
-
   txtEl.style.opacity = "0"; txtEl.style.transform = "scale(0.8)";
   animateDraw();
 }
