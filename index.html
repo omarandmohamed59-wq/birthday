@@ -117,7 +117,7 @@
 
     #phase3 { display:none; position:fixed; inset:0; background:#8b3a00; z-index:2100; flex-direction:column; align-items:center; justify-content:center; overflow:hidden; }
     #heartCanvas { position:absolute; inset:0; width:100%; height:100%; }
-    #cards-wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; }
+    #cards-wrap { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; padding: 16px; }
     .card-scene { width:min(90vw,600px); height:380px; perspective:1000px; position:relative; display:flex; justify-content:center; }
     .bday-card { position:absolute; width: 100%; max-width: 550px; height: 100%; border-radius:16px; display:flex; box-shadow:0 25px 60px rgba(0,0,0,0.4); overflow:hidden; opacity:0; transform:translateY(60px); }
     .card-left { flex:1; padding:30px 25px; background:linear-gradient(135deg,#fff8f0,#fff0e0); display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative; }
@@ -146,9 +146,18 @@
       .action-btns{top:250px;left:10px} .right-col{top:45px;right:8px}
       .photo-ring{width:105px;height:105px} .envelope-container{top:330px}
       .footer-spacer{padding-top:540px}
-      .bday-card { flex-direction: column; height: auto; max-height: 90vh; overflow-y: auto; }
-      .card-left, .card-right { padding: 20px; }
-      .card-scene { height: auto; }
+
+      /* ===== MOBILE CARD FIX ===== */
+      #cards-wrap { padding: 12px; align-items: flex-start; padding-top: 60px; overflow-y: auto; }
+      .card-scene { width: 100%; height: auto; min-height: 0; perspective: none; }
+      .bday-card { position: relative; flex-direction: column; height: auto; max-height: none; width: 100%; transform: translateY(60px); overflow: visible; }
+      .card-left { flex: none; padding: 20px 16px; min-height: 0; }
+      .card-left-title { font-size: 1.5rem; margin-bottom: 10px; }
+      .card-left .photo-ring { width: 80px; height: 80px; }
+      .card-right { flex: none; padding: 20px 16px; }
+      .card-to { font-size: 1.3rem; }
+      .card-msg { font-size: 0.88rem; line-height: 1.6; }
+      /* =========================== */
     }
   </style>
 </head>
@@ -571,7 +580,6 @@ function startLetterHearts() {
   letterHeartsTimeout = setTimeout(() => {
     cancelAnimationFrame(letterHeartsAnimId);
     letterHeartsAnimId = null;
-    // fade out canvas smoothly
     let op = 1;
     const fadeOut = setInterval(() => {
       op -= 0.05;
