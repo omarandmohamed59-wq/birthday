@@ -19,6 +19,17 @@
     body { font-family:'Tajawal',sans-serif; background:var(--nescafe-light); color: var(--coffee-dark); overflow-x:hidden; }
     canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:997; }
 
+    #floatingHeartsCanvas {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 2100;
+      display: none;
+    }
+
     #phase1 {
       position:fixed; inset:0;
       background:radial-gradient(ellipse at 60% 40%, #fbf9f6 0%, #e8ded1 70%);
@@ -30,34 +41,12 @@
     .bg-orb { position:absolute; border-radius:50%; background:rgba(139,58,0,0.04); pointer-events:none; }
     .cake-wrapper {
       display:flex; flex-direction:column; align-items:center;
-      filter:drop-shadow(0 20px 40px rgba(92,34,0,0.25));
       transform: translateY(-200px);
       opacity: 0;
     }
-    .candles-row { display:flex; gap:24px; margin-bottom:-2px; z-index:10; position:relative; }
-    .candle-wrap { display:flex; flex-direction:column; align-items:center; }
-    .flame-wrap { width:18px; height:26px; position:relative; }
-    .flame-body { width:13px; height:20px; background:linear-gradient(to bottom,#fffde7,#ffcc02,#ff6d00); border-radius:50% 50% 30% 30%; position:absolute; top:0; left:50%; transform:translateX(-50%); box-shadow:0 0 12px #ffcc02,0 0 25px #ff6d00; }
-    .candle-stick { width:11px; height:40px; border-radius:4px; position:relative; }
-    .candle-stick::after { content:''; position:absolute; top:0; left:28%; width:28%; height:100%; background:rgba(255,255,255,0.3); border-radius:2px; }
-    .c1 .candle-stick { background:linear-gradient(#ffb3d9,#ff4da6); }
-    .c2 .candle-stick { background:linear-gradient(#fff9c4,#ffcc02); }
-    .c3 .candle-stick { background:linear-gradient(#b3d9ff,#42a5f5); }
-    .layer-top { width:175px; height:65px; background:linear-gradient(135deg,#ffffff,#f3edf0); border-radius:50%/30%; position:relative; box-shadow:inset 0 4px 8px rgba(255,255,255,0.9),inset 0 -15px 20px rgba(0,0,0,0.08),0 4px 10px rgba(0,0,0,0.15); overflow:visible; }
-    .cream-row { position:absolute; top:-12px; left:0; right:0; display:flex; justify-content:space-around; padding:0 12px; }
-    .swirl { width:24px; height:24px; background:radial-gradient(circle at 40% 35%,#ffffff 0%,#fff0f5 60%,#e0b0c0 100%); border-radius:50%; box-shadow:0 4px 6px rgba(0,0,0,0.15),inset -2px -2px 4px rgba(0,0,0,0.1); }
-    .berry-row { position:absolute; top:8px; left:0; right:0; display:flex; justify-content:space-around; padding:0 25px; font-size:1.3rem; filter:drop-shadow(0 4px 4px rgba(0,0,0,0.2)); }
-    .frosting { height:20px; position:relative; overflow:visible; z-index:5; margin-top:-10px; border-radius:50%/40%; }
-    .frosting.top { width:181px; background:linear-gradient(to bottom,#ff50a8,#d81b60); box-shadow:0 4px 6px rgba(0,0,0,0.15),inset 0 2px 4px rgba(255,255,255,0.4); }
-    .frosting.bot { width:202px; background:linear-gradient(to bottom,#ff50a8,#d81b60); box-shadow:0 4px 6px rgba(0,0,0,0.2),inset 0 2px 4px rgba(255,255,255,0.4); }
-    .drip { position:absolute; top:10px; background:linear-gradient(to bottom,#d81b60,#a00037); border-radius:0 0 20px 20px; width:12px; box-shadow:2px 3px 5px rgba(0,0,0,0.25),inset -1px -2px 3px rgba(0,0,0,0.3); }
-    .layer-mid { width:195px; height:75px; background:linear-gradient(90deg,#5c0000 0%,#8b0000 30%,#a00000 70%,#4a0000 100%); border-radius:50%/25%; margin-top:-10px; position:relative; box-shadow:inset 0 10px 15px rgba(0,0,0,0.3),inset 0 -10px 15px rgba(0,0,0,0.4); }
-    .layer-mid-text { position:absolute; top:60%; left:50%; transform:translate(-50%,-50%); font-family:'Dancing Script',cursive; color:rgba(255,200,200,0.6); font-size:1.1rem; white-space:nowrap; text-shadow:1px 1px 2px rgba(0,0,0,0.6); }
-    .layer-bot { width:218px; height:85px; background:linear-gradient(90deg,#4a0000 0%,#8b0000 30%,#6b0000 75%,#3d0000 100%); border-radius:50%/22%; margin-top:-12px; position:relative; box-shadow:inset 0 12px 15px rgba(0,0,0,0.4),inset 0 -15px 20px rgba(0,0,0,0.5),0 10px 20px rgba(0,0,0,0.4); }
-    .dots-row { position:absolute; bottom:20px; left:0; right:0; display:flex; justify-content:space-around; padding:0 20px; }
-    .cake-dot { width:8px; height:8px; background:radial-gradient(circle at 35% 35%,#ffffff,#ffb3cd); border-radius:50%; box-shadow:1px 2px 3px rgba(0,0,0,0.3); }
-    .plate { width:270px; height:28px; background:linear-gradient(to bottom,#ffffff 0%,#eaeaea 40%,#ccc 100%); border-radius:50%/30%; box-shadow:0 15px 30px rgba(0,0,0,0.2),inset 0 2px 5px rgba(255,255,255,1); margin-top:-15px; z-index:1; }
-    .cake-label { margin-top:36px; text-align:center; opacity:0; }
+    .cake-svg { width: min(320px, 88vw); height: auto; display:block; filter:drop-shadow(0 18px 36px rgba(80,20,0,0.28)); }
+    .flame-body { transition: opacity 0.3s, transform 0.3s; transform-origin: center bottom; }
+    .cake-label { margin-top:18px; text-align:center; opacity:0; }
     .cake-label h2 { font-family:'Dancing Script',cursive; font-size:3rem; color:#d81b60; text-shadow:0 0 15px rgba(216,27,96,0.2); margin-bottom:4px; }
     .cake-label p { font-family:'Tajawal',sans-serif; font-weight: 700; font-size:1.4rem; color: var(--coffee-dark); }
     
@@ -165,36 +154,133 @@
 </head>
 <body>
 <canvas id="fireworksCanvas"></canvas>
+<canvas id="floatingHeartsCanvas"></canvas>
 
 <!-- PHASE 1 -->
 <div id="phase1" onclick="blowCandles()">
   <div class="bg-orb" style="width:500px;height:500px;top:-150px;left:-100px"></div>
   <div class="bg-orb" style="width:350px;height:350px;bottom:-80px;right:-60px"></div>
   <div class="cake-wrapper" id="cakeWrap">
-    <div class="candles-row">
-      <div class="candle-wrap c1"><div class="flame-wrap"><div class="flame-body" id="f1"></div></div><div class="candle-stick"></div></div>
-      <div class="candle-wrap c2"><div class="flame-wrap"><div class="flame-body" id="f2"></div></div><div class="candle-stick"></div></div>
-      <div class="candle-wrap c3"><div class="flame-wrap"><div class="flame-body" id="f3"></div></div><div class="candle-stick"></div></div>
-    </div>
-    <div class="layer-top" id="lt">
-      <div class="cream-row"><div class="swirl"></div><div class="swirl"></div><div class="swirl"></div><div class="swirl"></div></div>
-      <div class="berry-row">🍓 🍓 🍓</div>
-    </div>
-    <div class="frosting top" id="fr1">
-      <div class="drip" style="left:10px;height:22px"></div><div class="drip" style="left:40px;height:16px"></div>
-      <div class="drip" style="left:72px;height:26px"></div><div class="drip" style="left:108px;height:18px"></div>
-      <div class="drip" style="left:144px;height:24px"></div><div class="drip" style="left:165px;height:15px"></div>
-    </div>
-    <div class="layer-mid" id="lm"><div class="layer-mid-text">Happy Birthday</div></div>
-    <div class="frosting bot" id="fr2">
-      <div class="drip" style="left:8px;height:24px"></div><div class="drip" style="left:44px;height:17px"></div>
-      <div class="drip" style="left:82px;height:28px"></div><div class="drip" style="left:124px;height:20px"></div>
-      <div class="drip" style="left:162px;height:26px"></div><div class="drip" style="left:188px;height:16px"></div>
-    </div>
-    <div class="layer-bot" id="lb">
-      <div class="dots-row"><div class="cake-dot"></div><div class="cake-dot"></div><div class="cake-dot"></div><div class="cake-dot"></div><div class="cake-dot"></div><div class="cake-dot"></div></div>
-    </div>
-    <div class="plate" id="pl"></div>
+    <svg class="cake-svg" viewBox="0 0 340 430" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="plateG" cx="50%" cy="30%" r="60%"><stop offset="0%" stop-color="#ffffff"/><stop offset="60%" stop-color="#efefef"/><stop offset="100%" stop-color="#cccccc"/></radialGradient>
+        <radialGradient id="topLayerG" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#ffffff"/><stop offset="100%" stop-color="#f5eef3"/></radialGradient>
+        <radialGradient id="midLayerG" cx="20%" cy="30%" r="80%"><stop offset="0%" stop-color="#a30000"/><stop offset="40%" stop-color="#8b0000"/><stop offset="100%" stop-color="#4a0000"/></radialGradient>
+        <radialGradient id="botLayerG" cx="20%" cy="30%" r="80%"><stop offset="0%" stop-color="#8b0000"/><stop offset="40%" stop-color="#6b0000"/><stop offset="100%" stop-color="#3d0000"/></radialGradient>
+        <radialGradient id="frostG" cx="50%" cy="0%" r="100%"><stop offset="0%" stop-color="#ff6ec4"/><stop offset="100%" stop-color="#d81b60"/></radialGradient>
+        <radialGradient id="cream1" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#ffffff"/><stop offset="60%" stop-color="#fff0f5"/><stop offset="100%" stop-color="#e8b8cc"/></radialGradient>
+        <radialGradient id="flameG" cx="50%" cy="10%" r="80%"><stop offset="0%" stop-color="#fffde7"/><stop offset="40%" stop-color="#ffcc02"/><stop offset="100%" stop-color="#ff6d00"/></radialGradient>
+      </defs>
+
+      <!-- CANDLE 1 (pink) -->
+      <g id="candle1">
+        <ellipse id="f1" cx="125" cy="58" rx="8" ry="12" fill="url(#flameG)" opacity="1"/>
+        <ellipse id="f1inner" cx="123" cy="54" rx="3.5" ry="6" fill="#fffde7" opacity="0.85"/>
+        <line x1="125" y1="68" x2="125" y2="70" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="119" y="70" width="12" height="42" rx="3" fill="#ff4da6"/>
+        <rect x="123" y="70" width="3" height="42" rx="1" fill="rgba(255,255,255,0.32)"/>
+      </g>
+      <!-- CANDLE 2 (yellow) -->
+      <g id="candle2">
+        <ellipse id="f2" cx="170" cy="53" rx="8" ry="12" fill="url(#flameG)" opacity="1"/>
+        <ellipse id="f2inner" cx="168" cy="49" rx="3.5" ry="6" fill="#fffde7" opacity="0.85"/>
+        <line x1="170" y1="63" x2="170" y2="65" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="164" y="65" width="12" height="42" rx="3" fill="#ffcc02"/>
+        <rect x="168" y="65" width="3" height="42" rx="1" fill="rgba(255,255,255,0.32)"/>
+      </g>
+      <!-- CANDLE 3 (blue) -->
+      <g id="candle3">
+        <ellipse id="f3" cx="215" cy="58" rx="8" ry="12" fill="url(#flameG)" opacity="1"/>
+        <ellipse id="f3inner" cx="213" cy="54" rx="3.5" ry="6" fill="#fffde7" opacity="0.85"/>
+        <line x1="215" y1="68" x2="215" y2="70" stroke="#666" stroke-width="1.5" stroke-linecap="round"/>
+        <rect x="209" y="70" width="12" height="42" rx="3" fill="#42a5f5"/>
+        <rect x="213" y="70" width="3" height="42" rx="1" fill="rgba(255,255,255,0.32)"/>
+      </g>
+
+      <!-- TOP LAYER -->
+      <ellipse cx="170" cy="110" rx="100" ry="20" fill="url(#topLayerG)" stroke="#e8d8e0" stroke-width="0.5"/>
+      <rect x="70" y="110" width="200" height="55" fill="url(#topLayerG)"/>
+      <ellipse cx="170" cy="165" rx="100" ry="20" fill="#f0e8ed" stroke="#e0d0d8" stroke-width="0.5"/>
+      <rect x="70" y="110" width="14" height="55" fill="rgba(0,0,0,0.07)"/>
+      <rect x="256" y="110" width="14" height="55" fill="rgba(0,0,0,0.07)"/>
+      <!-- cream swirls -->
+      <ellipse cx="110" cy="100" rx="13" ry="13" fill="url(#cream1)" stroke="#f0c8d8" stroke-width="0.5"/>
+      <ellipse cx="110" cy="96" rx="7" ry="7" fill="white" opacity="0.55"/>
+      <ellipse cx="170" cy="96" rx="13" ry="13" fill="url(#cream1)" stroke="#f0c8d8" stroke-width="0.5"/>
+      <ellipse cx="170" cy="92" rx="7" ry="7" fill="white" opacity="0.55"/>
+      <ellipse cx="230" cy="100" rx="13" ry="13" fill="url(#cream1)" stroke="#f0c8d8" stroke-width="0.5"/>
+      <ellipse cx="230" cy="96" rx="7" ry="7" fill="white" opacity="0.55"/>
+      <!-- strawberries -->
+      <ellipse cx="138" cy="108" rx="9" ry="10" fill="#e53935"/>
+      <ellipse cx="138" cy="104" rx="6" ry="5" fill="#ef9a9a" opacity="0.5"/>
+      <path d="M135,99 Q138,96 141,99" stroke="#388e3c" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <ellipse cx="202" cy="108" rx="9" ry="10" fill="#e53935"/>
+      <ellipse cx="202" cy="104" rx="6" ry="5" fill="#ef9a9a" opacity="0.5"/>
+      <path d="M199,99 Q202,96 205,99" stroke="#388e3c" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+      <!-- FROSTING TOP -->
+      <ellipse cx="170" cy="167" rx="107" ry="13" fill="url(#frostG)"/>
+      <rect x="63" y="167" width="214" height="9" fill="#e91e8c"/>
+      <path d="M80,173 Q78,186 79,195" stroke="#d81b60" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M112,171 Q110,181 111,188" stroke="#d81b60" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M145,173 Q143,188 144,197" stroke="#d81b60" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M178,171 Q176,183 177,191" stroke="#d81b60" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M211,173 Q209,187 210,196" stroke="#d81b60" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M244,171 Q246,182 245,189" stroke="#d81b60" stroke-width="8" fill="none" stroke-linecap="round"/>
+
+      <!-- MID LAYER -->
+      <ellipse cx="170" cy="181" rx="118" ry="20" fill="url(#midLayerG)"/>
+      <rect x="52" y="181" width="236" height="70" fill="#8b0000"/>
+      <ellipse cx="170" cy="251" rx="118" ry="20" fill="#6b0000"/>
+      <rect x="52" y="181" width="18" height="70" fill="rgba(0,0,0,0.15)"/>
+      <rect x="270" y="181" width="18" height="70" fill="rgba(0,0,0,0.15)"/>
+      <rect x="52" y="216" width="236" height="35" fill="rgba(0,0,0,0.08)"/>
+      <text x="170" y="224" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="rgba(255,200,200,0.62)" font-style="italic">Happy Birthday</text>
+      <circle cx="90" cy="238" r="4" fill="rgba(255,180,200,0.5)"/>
+      <circle cx="117" cy="242" r="3" fill="rgba(255,180,200,0.4)"/>
+      <circle cx="144" cy="238" r="4" fill="rgba(255,180,200,0.5)"/>
+      <circle cx="170" cy="242" r="3" fill="rgba(255,180,200,0.4)"/>
+      <circle cx="196" cy="238" r="4" fill="rgba(255,180,200,0.5)"/>
+      <circle cx="223" cy="242" r="3" fill="rgba(255,180,200,0.4)"/>
+      <circle cx="250" cy="238" r="4" fill="rgba(255,180,200,0.5)"/>
+
+      <!-- FROSTING BOTTOM -->
+      <ellipse cx="170" cy="253" rx="127" ry="15" fill="url(#frostG)"/>
+      <rect x="43" y="253" width="254" height="9" fill="#e91e8c"/>
+      <path d="M62,259 Q59,275 61,285" stroke="#d81b60" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M97,257 Q95,270 96,279" stroke="#d81b60" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M133,259 Q131,276 132,287" stroke="#d81b60" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M170,257 Q168,271 169,280" stroke="#d81b60" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M206,259 Q204,275 205,285" stroke="#d81b60" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M242,257 Q244,270 243,278" stroke="#d81b60" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M270,259 Q272,272 271,281" stroke="#d81b60" stroke-width="9" fill="none" stroke-linecap="round"/>
+
+      <!-- BOT LAYER -->
+      <ellipse cx="170" cy="267" rx="141" ry="20" fill="url(#botLayerG)"/>
+      <rect x="29" y="267" width="282" height="86" fill="#6b0000"/>
+      <ellipse cx="170" cy="353" rx="141" ry="20" fill="#4a0000"/>
+      <rect x="29" y="267" width="22" height="86" fill="rgba(0,0,0,0.18)"/>
+      <rect x="289" y="267" width="22" height="86" fill="rgba(0,0,0,0.18)"/>
+      <rect x="29" y="310" width="282" height="43" fill="rgba(0,0,0,0.1)"/>
+      <rect x="29" y="304" width="282" height="12" fill="rgba(255,100,150,0.16)"/>
+      <rect x="29" y="305" width="282" height="2" fill="rgba(255,160,190,0.28)"/>
+      <rect x="29" y="314" width="282" height="2" fill="rgba(255,160,190,0.28)"/>
+      <circle cx="65" cy="338" r="5" fill="rgba(255,200,220,0.6)"/>
+      <circle cx="97" cy="344" r="4" fill="rgba(255,200,220,0.5)"/>
+      <circle cx="129" cy="338" r="5" fill="rgba(255,200,220,0.6)"/>
+      <circle cx="161" cy="344" r="4" fill="rgba(255,200,220,0.5)"/>
+      <circle cx="193" cy="338" r="5" fill="rgba(255,200,220,0.6)"/>
+      <circle cx="225" cy="344" r="4" fill="rgba(255,200,220,0.5)"/>
+      <circle cx="257" cy="338" r="5" fill="rgba(255,200,220,0.6)"/>
+      <circle cx="285" cy="344" r="4" fill="rgba(255,200,220,0.5)"/>
+
+      <!-- PLATE -->
+      <ellipse cx="170" cy="368" rx="168" ry="22" fill="url(#plateG)" stroke="#d8d8d8" stroke-width="0.8"/>
+      <ellipse cx="170" cy="364" rx="155" ry="16" fill="rgba(255,255,255,0.45)"/>
+      <ellipse cx="140" cy="362" rx="40" ry="7" fill="rgba(255,255,255,0.35)"/>
+      <!-- plate shadow -->
+      <ellipse cx="170" cy="388" rx="162" ry="11" fill="rgba(80,20,0,0.10)"/>
+    </svg>
   </div>
   <div class="cake-label" id="cakeLabel"><h2>Happy Birthday!</h2><p>Zeina 🌹</p><span style="display:block; margin-top:15px; font-size:0.9rem; color:#8b3a00; font-weight:bold;">اضغط على الكعكة لإطفاء الشموع 🎉</span></div>
 </div>
@@ -377,7 +463,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function blowCandles() {
-  gsap.to(".flame-body", { scale: 0, opacity: 0, duration: 0.4 });
+  gsap.to("#f1,#f2,#f3,#f1inner,#f2inner,#f3inner", { scale: 0, opacity: 0, duration: 0.35, transformOrigin:"50% 100%", stagger:0.08 });
   gsap.to("#phase1", { opacity: 0, duration: 0.8, delay: 0.5, onComplete: () => {
     document.getElementById("phase1").style.display = "none";
     document.getElementById("phase2").style.display = "block";
@@ -403,6 +489,120 @@ function startPhase2Anims() {
   initFireworks();
 }
 
+// ===== FLOATING HEARTS ON LETTER OPEN =====
+var letterHeartsAnimId = null;
+var letterHeartsTimeout = null;
+
+function startLetterHearts() {
+  const canvas = document.getElementById("floatingHeartsCanvas");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.display = "block";
+
+  const ctx = canvas.getContext("2d");
+  let hearts = [];
+  let frameCount = 0;
+
+  if (letterHeartsAnimId) cancelAnimationFrame(letterHeartsAnimId);
+  if (letterHeartsTimeout) clearTimeout(letterHeartsTimeout);
+
+  class FloatHeart {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = canvas.height + 20;
+      this.size = Math.random() * 11 + 5;
+      this.speed = Math.random() * 1.6 + 0.7;
+      this.alpha = 0;
+      this.fadeIn = true;
+      this.decay = Math.random() * 0.007 + 0.003;
+      this.swayAmp = Math.random() * 1.8 + 0.5;
+      this.swaySpeed = Math.random() * 0.025 + 0.01;
+      this.swayOffset = Math.random() * Math.PI * 2;
+      const hue = 330 + Math.random() * 35;
+      const light = 60 + Math.random() * 20;
+      this.color = `hsl(${hue}, 100%, ${light}%)`;
+    }
+    draw() {
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, this.alpha);
+      ctx.fillStyle = this.color;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 6;
+      const s = this.size;
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y - s * 0.25);
+      ctx.bezierCurveTo(this.x - s, this.y - s * 1.1, this.x - s * 1.4, this.y + s * 0.3, this.x, this.y + s * 0.95);
+      ctx.bezierCurveTo(this.x + s * 1.4, this.y + s * 0.3, this.x + s, this.y - s * 1.1, this.x, this.y - s * 0.25);
+      ctx.fill();
+      ctx.restore();
+    }
+    update(frame) {
+      this.y -= this.speed;
+      this.x += Math.sin(frame * this.swaySpeed + this.swayOffset) * this.swayAmp;
+      if (this.fadeIn) {
+        this.alpha += 0.06;
+        if (this.alpha >= 1) { this.alpha = 1; this.fadeIn = false; }
+      } else {
+        this.alpha -= this.decay;
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    frameCount++;
+    if (frameCount % 5 === 0) {
+      const count = Math.floor(Math.random() * 2) + 1;
+      for (let i = 0; i < count; i++) hearts.push(new FloatHeart());
+    }
+    for (let i = hearts.length - 1; i >= 0; i--) {
+      hearts[i].update(frameCount);
+      if (hearts[i].alpha <= 0 && !hearts[i].fadeIn) {
+        hearts.splice(i, 1);
+      } else {
+        hearts[i].draw();
+      }
+    }
+    letterHeartsAnimId = requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  letterHeartsTimeout = setTimeout(() => {
+    cancelAnimationFrame(letterHeartsAnimId);
+    letterHeartsAnimId = null;
+    // fade out canvas smoothly
+    let op = 1;
+    const fadeOut = setInterval(() => {
+      op -= 0.05;
+      canvas.style.opacity = Math.max(0, op);
+      if (op <= 0) {
+        clearInterval(fadeOut);
+        canvas.style.display = "none";
+        canvas.style.opacity = 1;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }, 30);
+  }, 5000);
+}
+
+function stopLetterHearts() {
+  if (letterHeartsAnimId) {
+    cancelAnimationFrame(letterHeartsAnimId);
+    letterHeartsAnimId = null;
+  }
+  if (letterHeartsTimeout) {
+    clearTimeout(letterHeartsTimeout);
+    letterHeartsTimeout = null;
+  }
+  const canvas = document.getElementById("floatingHeartsCanvas");
+  canvas.style.display = "none";
+  canvas.style.opacity = 1;
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+// ==========================================
+
 function openLetter() {
   const pop = document.getElementById("letterPopup");
   const overlay = document.getElementById("letterOverlay");
@@ -412,6 +612,7 @@ function openLetter() {
     overlay.classList.add("active");
     pop.classList.add("open", "visible");
   }, 10);
+  startLetterHearts();
 }
 
 function closeLetter(e) {
@@ -424,6 +625,7 @@ function closeLetter(e) {
     pop.style.display = "none";
     overlay.style.display = "none";
   }, 400);
+  stopLetterHearts();
 }
 
 function toggleTranslation() {
@@ -436,6 +638,7 @@ function toggleTranslation() {
 
 function triggerPhase3() {
   document.getElementById("phase2").style.display = "none";
+  stopLetterHearts();
   const hds = document.getElementById("heartDrawScreen");
   hds.style.display = "flex";
   hds.style.opacity = "1";
